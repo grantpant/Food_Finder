@@ -1,22 +1,22 @@
 <% include partials/header.ejs %>
 
 <div class="container">
-    <h1>Here's your food!</h1>
+  <h1>Here's your food!</h1>
+  <% stuff.forEach(function(stuff) { %>
+    <% if(stuff.rating % 1 == 0) { %>
+      <% star = 'regular_' + stuff.rating + '@2x.png'; %>
+      <% } else { %>
+      <% star = 'regular_' + Math.floor(stuff.rating) + '_half@2x.png'; %>
+  <% } %>
 
-   <% stuff.forEach(function(stuff){ %>
-        <% if(stuff.rating % 1 == 0){ %>
-        <%    star = 'regular_' + stuff.rating + '@2x.png'; %>
-        <% } else { %>
-        <%    star = 'regular_' + Math.floor(stuff.rating) + '_half@2x.png'; %>
-        <% } %>
-
-
-        <div class="bg-info">
-            <p><a  class="foodItem"href="<%= stuff.url %>"><%= stuff.name %></a>    <img class="starPic" src="img/regular/<%= star %>"></p>
-        </div>
-    <% }) %>
-    <p><a href="/">Search again?</a></p>
+  <div class="bg-info">
+    <p>
+      <a class="foodItem" href="<%= stuff.url %>"><%= stuff.name %></a>
+      <img class="starPic" src="img/regular/<%= star %>">
+    </p>
+  </div>
+  <% }) %>
+  <p><a href="/">Search again?</a></p>
 </div>
-
 
 <% include partials/footer.ejs %>
